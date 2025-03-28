@@ -37,7 +37,6 @@ RUN mkdir -p /opt/superslicer && \
     mkdir -p /configs && \
     mkdir -p /prints && \
     chown -R superslicer:superslicer /opt/superslicer/ /home/superslicer/ /prints/ /configs/ && \
-    locale-gen en_US && \
     mkdir /configs/.local && \
     mkdir -p /configs/.config && \
     ln -s /configs/.config/ /home/superslicer/ && \
