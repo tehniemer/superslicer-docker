@@ -34,12 +34,12 @@ RUN mkdir -p /opt/superslicer && \
     chmod -R 777 /opt/superslicer/ && \
     groupadd superslicer && \
     useradd -g superslicer --create-home --home-dir /home/superslicer superslicer && \
-    mkdir -p /configs && \
+    mkdir -p /config && \
     mkdir -p /prints && \
-    chown -R superslicer:superslicer /opt/superslicer/ /home/superslicer/ /prints/ /configs/ && \
-    mkdir /configs/.local && \
-    mkdir -p /configs/.config && \
-    ln -s /configs/.config/ /home/superslicer/ && \
+    chown -R superslicer:superslicer /opt/superslicer/ /home/superslicer/ /prints/ /config/ && \
+    mkdir /config/.local && \
+    mkdir -p /config/.config && \
+    ln -s /config/.config/ /home/superslicer/ && \
     mkdir -p /home/superslicer/.config && \
     # We can now set the Download directory for Firefox and other browsers. 
     # We can also add /prints/ to the file explorer bookmarks for easy access.
@@ -63,5 +63,5 @@ EXPOSE 5800 5900
 # Define volumes for persistent storage
 VOLUME ["/config", "/prints"]
 
-# Define entrypoint
-ENTRYPOINT ["/init"]
+# Define container startup command
+CMD ["/startapp.sh"]
