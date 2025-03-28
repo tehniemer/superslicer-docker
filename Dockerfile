@@ -21,7 +21,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Download and install SuperSlicer
 RUN mkdir -p /opt/superslicer && \
-    wget -qO- $(curl -s https://api.github.com/repos/supermerill/SuperSlicer/releases/latest | jq -r '.assets[] | select(.name | test("linux64_[0-9]+\\.tar\\.zip$")) | .browser_download_url') | tar -xJ -C /opt/superslicer
+    wget -qO- https://github.com/supermerill/SuperSlicer/releases/download/2.5.59.13/SuperSlicer_2.5.59.13_linux64_240701.tar.zip | tar -xJ -C /opt/superslicer
 
 # Set up application execution
 RUN ln -s /opt/superslicer/SuperSlicer /usr/bin/superslicer
