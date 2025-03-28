@@ -6,14 +6,14 @@ ENV APP_NAME="SuperSlicer"
 
 # Install dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    libxcb-xinerama0 \
-    libxkbcommon-x11-0 \
-    libxrandr2 \
-    libglu1-mesa \
-    libpangoxft-1.0-0 \
-    libgtk-3-0 \
-    wget \
-    && rm -rf /var/lib/apt/lists/*
+    curl wget xz-utils unzip \
+    libgtk-3-0 libxcb-shm0 libxcb-xfixes0 \
+    libgl1-mesa-glx libxkbcommon-x11-0 libatk1.0-0 \
+    libatk-bridge2.0-0 libcairo2 libpango-1.0-0 \
+    libpangocairo-1.0-0 libgdk-pixbuf2.0-0 \
+    libglib2.0-0 libgtk-3-0 libharfbuzz0b \
+    libx11-6 && \
+    rm -rf /var/lib/apt/lists/*
 
 # Set workdir to the application folder
 WORKDIR /opt/superslicer
