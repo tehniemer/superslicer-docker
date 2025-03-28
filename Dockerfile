@@ -6,7 +6,7 @@ ENV APP_NAME="SuperSlicer"
 
 # Install dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    curl wget xz-utils unzip \
+    curl wget xz-utils unzip jq \
     libgtk-3-0 libxcb-shm0 libxcb-xfixes0 \
     libgl1-mesa-glx libxkbcommon-x11-0 libatk1.0-0 \
     libatk-bridge2.0-0 libcairo2 libpango-1.0-0 \
