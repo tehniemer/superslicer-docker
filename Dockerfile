@@ -50,12 +50,12 @@ RUN mkdir -p /opt/superslicer && \
 RUN ln -s /opt/superslicer/SuperSlicer /usr/bin/superslicer
 
 # Define the startup command
-RUN mkdir -p /config && \
-    echo "/usr/bin/superslicer" > /config/startapp.sh && \
-    chmod +x /config/startapp.sh
+RUN mkdir -p /opt/superslicer/config && \
+    echo "/usr/bin/superslicer" > /opt/superslicer/config/startapp.sh && \
+    chmod +x /opt/superslicer/config/startapp.sh
 
 # Set application startup script
-ENV APP_EXEC="/config/startapp.sh"
+ENV APP_EXEC="/opt/superslicer/config/startapp.sh"
 
 # Expose GUI ports (default VNC port)
 EXPOSE 5800 5900
@@ -63,5 +63,5 @@ EXPOSE 5800 5900
 # Define volumes for persistent storage
 VOLUME ["/config", "/prints"]
 
-# Define container startup command
-CMD ["/startapp.sh"]
+# Define entrypoint
+ENTRYPOINT ["/init"]
