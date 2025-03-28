@@ -33,19 +33,19 @@ RUN mkdir -p /opt/superslicer && \
     apt-get autoclean && \
     chmod -R 777 /opt/superslicer/ && \
     groupadd superslicer && \
-    useradd -g slic3r --create-home --home-dir /home/superslicer superslicer && \
+    useradd -g superslicer --create-home --home-dir /home/superslicer superslicer && \
     mkdir -p /configs && \
     mkdir -p /prints && \
     chown -R superslicer:superslicer /opt/superslicer/ /home/superslicer/ /prints/ /configs/ && \
     locale-gen en_US && \
     mkdir /configs/.local && \
     mkdir -p /configs/.config && \
-    ln -s /configs/.config/ /home/slic3r/ && \
-    mkdir -p /home/slic3r/.config && \
+    ln -s /configs/.config/ /home/superslicer/ && \
+    mkdir -p /home/superslicer/.config && \
     # We can now set the Download directory for Firefox and other browsers. 
     # We can also add /prints/ to the file explorer bookmarks for easy access.
-    echo "XDG_DOWNLOAD_DIR=\"/prints/\"" >> /home/slic3r/.config/user-dirs.dirs && \
-    echo "file:///prints prints" >> /home/slic3r/.gtk-bookmarks 
+    echo "XDG_DOWNLOAD_DIR=\"/prints/\"" >> /home/superslicer/.config/user-dirs.dirs && \
+    echo "file:///prints prints" >> /home/superslicer/.gtk-bookmarks 
 
 # Set up application execution
 RUN ln -s /opt/superslicer/SuperSlicer /usr/bin/superslicer
