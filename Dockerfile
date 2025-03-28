@@ -63,5 +63,5 @@ EXPOSE 5800 5900
 # Define volumes for persistent storage
 VOLUME ["/config", "/prints"]
 
-# Define entrypoint
-ENTRYPOINT ["/init"]
+# Define container startup command
+CMD ["/opt/superslicer/config/startapp.sh"]
