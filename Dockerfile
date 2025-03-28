@@ -6,7 +6,7 @@ ENV APP_NAME="SuperSlicer"
 
 # Install required dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    curl wget xz-utils \
+    curl wget unzip \
     libgtk-3-0 libxcb-shm0 libxcb-xfixes0 \
     libgl1-mesa-glx libxkbcommon-x11-0 libatk1.0-0 \
     libatk-bridge2.0-0 libcairo2 libpango-1.0-0 \
@@ -20,8 +20,10 @@ WORKDIR /opt/superslicer
 
 # Download and install the latest SuperSlicer release
 RUN LATEST_URL=$(curl -s https://api.github.com/repos/supermerill/SuperSlicer/releases/latest | \
-    grep "browser_download_url.*linux-x64" | cut -d '"' -f 4) && \
-    wget -qO- "$LATEST_URL" | tar xJ --strip-components=1 -C /opt/superslicer
+    grep "browser_download_url.*linux-x64.*\.zip" | cut -d '"' -f 4) && \
+    wget -O superslicer.zip "$LATEST_URL" && \
+    unzip superslicer.zip -d /opt/superslicer && \
+    rm superslicer.zip
 
 # Set execution permissions
 RUN chmod +x /opt/superslicer/SuperSlicer
