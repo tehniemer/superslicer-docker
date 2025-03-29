@@ -1,8 +1,5 @@
 # Use jlesage base image for GUI applications
-FROM jlesage/baseimage-gui:debian-11
-
-# Set environment variables
-ENV APP_NAME="SuperSlicer"
+FROM jlesage/baseimage-gui:ubuntu-22.04
 
 # Install dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -47,21 +44,10 @@ RUN mkdir -p /opt/superslicer && \
     echo "file:///prints prints" >> /home/superslicer/.gtk-bookmarks 
 
 # Set up application execution
-RUN ln -s /opt/superslicer/SuperSlicer /usr/bin/superslicer
+RUN ln -s /opt/superslicer/superslicer /usr/bin/superslicer
 
-# Define the startup command
-RUN mkdir -p /opt/superslicer/config && \
-    echo "/usr/bin/superslicer" > /opt/superslicer/config/startapp.sh && \
-    chmod +x /opt/superslicer/config/startapp.sh
+# Copy the start script.
+COPY startapp.sh /startapp.sh
 
-# Set application startup script
-ENV APP_EXEC="/opt/superslicer/config/startapp.sh"
-
-# Expose GUI ports (default VNC port)
-EXPOSE 5800 5900
-
-# Define volumes for persistent storage
-VOLUME ["/config", "/prints"]
-
-# Define container startup command
-CMD ["/opt/superslicer/config/startapp.sh"]
+# Set the name of the application.
+RUN set-cont-env APP_NAME "SuperSlicer"
