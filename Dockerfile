@@ -1,6 +1,9 @@
 # Use jlesage base image for GUI applications
 FROM jlesage/baseimage-gui:debian-11
 
+# Set environment variables
+ ENV APP_NAME="SuperSlicer"
+ 
 # Install dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     curl wget xz-utils unzip jq \
@@ -48,6 +51,3 @@ RUN ln -s /opt/superslicer/superslicer /usr/bin/superslicer
 
 # Copy the start script.
 COPY startapp.sh /startapp.sh
-
-# Set the name of the application.
-RUN set-cont-env APP_NAME "SuperSlicer"
