@@ -1,5 +1,5 @@
 # Use jlesage base image for GUI applications
-FROM jlesage/baseimage-gui:ubuntu-22.04
+FROM jlesage/baseimage-gui:debian-11
 
 # Install dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
